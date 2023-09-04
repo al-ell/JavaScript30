@@ -43,6 +43,26 @@
 
 <button></button>
 <script>
+const divs = document.querySelectorAll('div');
+const button = document.querySelector('button');
+
+function logText(e) {
+  console.log(this.classList.value);
+  e.stopPropagation(); // capture has to be false for this to select one at a  time 
+}
+
+
+divs.forEach(div => div.addEventListener('click', logText, {
+  // capture: true // trigger event on way down, default is on way back up after stack || false 
+  capture: false
+  // onw: true // will only fire function once then remove event listener 
+}));
+
+button.addEventListener('click', () => {
+  console.log('click');
+}, {
+  once: true
+})
 
 </script>
 </body>
